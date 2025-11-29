@@ -168,11 +168,11 @@ Added to `~/.claude.json`:
     "claude-code-control": {
       "command": "python3",
       "args": [
-        "/mnt/agentic-system/mcp-servers/claude-code-control-mcp/server.py"
+        "${AGENTIC_SYSTEM_PATH}/mcp-servers/claude-code-control-mcp/server.py"
       ],
       "env": {
         "ANTHROPIC_API_KEY": "",
-        "NODE_ID": "macpro51"
+        "NODE_ID": "${NODE_ID}"
       },
       "disabled": true
     }
