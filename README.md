@@ -39,7 +39,7 @@ The Claude Code Control MCP enables programmatic code task execution through the
 
 1. **Install dependencies**:
 ```bash
-cd /mnt/agentic-system/mcp-servers/claude-code-control-mcp
+cd ${AGENTIC_SYSTEM_PATH:-/opt/agentic}/mcp-servers/claude-code-control-mcp
 pip3 install -r requirements.txt
 ```
 
@@ -57,7 +57,7 @@ Add to `~/.claude.json`:
     "claude-code-control": {
       "command": "python3",
       "args": [
-        "/mnt/agentic-system/mcp-servers/claude-code-control-mcp/server.py"
+        "${AGENTIC_SYSTEM_PATH:-/opt/agentic}/mcp-servers/claude-code-control-mcp/server.py"
       ],
       "env": {
         "ANTHROPIC_API_KEY": "sk-ant-..."
@@ -83,7 +83,7 @@ Execute a coding task using Claude AI with autonomous tool use.
 ```json
 {
   "task_description": "Add error handling to the API endpoint in server.py",
-  "working_directory": "/mnt/agentic-system/api",
+  "working_directory": "${AGENTIC_SYSTEM_PATH:-/opt/agentic}/api",
   "context_files": ["server.py", "tests/test_api.py"],
   "max_iterations": 20
 }
@@ -94,7 +94,7 @@ Execute a coding task using Claude AI with autonomous tool use.
 {
   "success": true,
   "task_description": "Add error handling...",
-  "working_directory": "/mnt/agentic-system/api",
+  "working_directory": "${AGENTIC_SYSTEM_PATH:-/opt/agentic}/api",
   "iterations": 8,
   "tool_uses": [
     {
@@ -122,7 +122,7 @@ Read and analyze multiple files using glob patterns.
 ```json
 {
   "patterns": ["*.py", "src/**/*.ts"],
-  "working_directory": "/mnt/agentic-system",
+  "working_directory": "${AGENTIC_SYSTEM_PATH:-/opt/agentic}",
   "max_files": 50
 }
 ```
@@ -149,7 +149,7 @@ Search for code patterns across the codebase.
 ```json
 {
   "query": "async def.*execute",
-  "working_directory": "/mnt/agentic-system",
+  "working_directory": "${AGENTIC_SYSTEM_PATH:-/opt/agentic}",
   "file_pattern": "*.py",
   "case_sensitive": true,
   "max_results": 100
@@ -188,7 +188,7 @@ Modify multiple files with batch operations.
       "new_content": "port = 9000"
     }
   ],
-  "working_directory": "/mnt/agentic-system"
+  "working_directory": "${AGENTIC_SYSTEM_PATH:-/opt/agentic}"
 }
 ```
 
@@ -218,7 +218,7 @@ Execute shell commands with output capture.
     "python3 -m pytest tests/",
     "black --check *.py"
   ],
-  "working_directory": "/mnt/agentic-system",
+  "working_directory": "${AGENTIC_SYSTEM_PATH:-/opt/agentic}",
   "timeout": 30
 }
 ```
@@ -308,7 +308,7 @@ result = await mcp_execute_tool(
     "execute_code_task",
     {
         "task_description": "Add integration tests for the API endpoints",
-        "working_directory": "/mnt/agentic-system/api",
+        "working_directory": "${AGENTIC_SYSTEM_PATH:-/opt/agentic}/api",
         "context_files": ["server.py", "models.py"]
     }
 )
@@ -433,7 +433,7 @@ python3 test_executor.py
 
 ```bash
 # Check permissions
-ls -la /mnt/agentic-system/
+ls -la ${AGENTIC_SYSTEM_PATH:-/opt/agentic}/
 
 # Verify working directory
 pwd
@@ -444,7 +444,7 @@ pwd
 ### Running Tests
 
 ```bash
-cd /mnt/agentic-system/mcp-servers/claude-code-control-mcp
+cd ${AGENTIC_SYSTEM_PATH:-/opt/agentic}/mcp-servers/claude-code-control-mcp
 python3 test_server.py
 ```
 

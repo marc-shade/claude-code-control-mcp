@@ -11,7 +11,7 @@ Get up and running with the Claude Code Control MCP server in 5 minutes.
 ## 1. Installation
 
 ```bash
-cd /mnt/agentic-system/mcp-servers/claude-code-control-mcp
+cd ${AGENTIC_SYSTEM_PATH:-/opt/agentic}/mcp-servers/claude-code-control-mcp
 
 # Install dependencies
 pip3 install -r requirements.txt
@@ -41,7 +41,7 @@ Edit `~/.claude.json` and update the `claude-code-control` section:
   "mcpServers": {
     "claude-code-control": {
       "command": "python3",
-      "args": ["/mnt/agentic-system/mcp-servers/claude-code-control-mcp/server.py"],
+      "args": ["${AGENTIC_SYSTEM_PATH:-/opt/agentic}/mcp-servers/claude-code-control-mcp/server.py"],
       "env": {
         "ANTHROPIC_API_KEY": "sk-ant-..."
       },
@@ -163,10 +163,10 @@ print('✓ API key valid')
 
 ```bash
 # Make scripts executable
-chmod +x /mnt/agentic-system/mcp-servers/claude-code-control-mcp/*.py
+chmod +x ${AGENTIC_SYSTEM_PATH:-/opt/agentic}/mcp-servers/claude-code-control-mcp/*.py
 
 # Check file permissions
-ls -la /mnt/agentic-system/mcp-servers/claude-code-control-mcp/
+ls -la ${AGENTIC_SYSTEM_PATH:-/opt/agentic}/mcp-servers/claude-code-control-mcp/
 ```
 
 ## Next Steps

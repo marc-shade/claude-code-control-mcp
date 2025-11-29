@@ -63,7 +63,7 @@ November 17, 2025 (2025-11-17)
    - Configuration details
 
 8. **Design Document** (~550 lines)
-   - `/mnt/agentic-system/docs/CLAUDE_CODE_CONTROL_MCP_DESIGN.md`
+   - `${AGENTIC_SYSTEM_PATH:-/opt/agentic}/docs/CLAUDE_CODE_CONTROL_MCP_DESIGN.md`
    - Architecture diagrams
    - Data flow
    - Security considerations
@@ -414,7 +414,7 @@ class CodeTaskWorkflow:
 
 4. **Verify Installation**:
    ```bash
-   cd /mnt/agentic-system/mcp-servers/claude-code-control-mcp
+   cd ${AGENTIC_SYSTEM_PATH:-/opt/agentic}/mcp-servers/claude-code-control-mcp
    ./verify_installation.sh
    ```
 
@@ -439,7 +439,7 @@ class CodeTaskWorkflow:
 ### Documentation
 - Quick Start: `QUICKSTART.md`
 - Full Documentation: `README.md`
-- Design Details: `/mnt/agentic-system/docs/CLAUDE_CODE_CONTROL_MCP_DESIGN.md`
+- Design Details: `${AGENTIC_SYSTEM_PATH:-/opt/agentic}/docs/CLAUDE_CODE_CONTROL_MCP_DESIGN.md`
 
 ### Testing
 - Test Suite: `test_server.py`

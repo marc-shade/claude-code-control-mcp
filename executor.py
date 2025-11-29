@@ -279,7 +279,7 @@ Current working directory: {working_directory}
     async def execute_task(
         self,
         task_description: str,
-        working_directory: str = os.environ.get("AGENTIC_SYSTEM_PATH", "/mnt/agentic-system"),
+        working_directory: str = os.environ.get("AGENTIC_SYSTEM_PATH", "${AGENTIC_SYSTEM_PATH:-/opt/agentic}"),
         context_files: List[str] = None,
         max_iterations: int = 20
     ) -> Dict[str, Any]:

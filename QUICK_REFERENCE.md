@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-cd /mnt/agentic-system/mcp-servers/claude-code-control-mcp
+cd ${AGENTIC_SYSTEM_PATH:-/opt/agentic}/mcp-servers/claude-code-control-mcp
 pip3 install -r requirements.txt
 export ANTHROPIC_API_KEY="sk-ant-..."
 ./verify_installation.sh

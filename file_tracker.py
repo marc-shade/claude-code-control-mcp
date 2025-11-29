@@ -31,7 +31,7 @@ class FileChange:
 class FileTracker:
     """Tracks file changes during task execution"""
 
-    def __init__(self, working_directory: str = os.environ.get("AGENTIC_SYSTEM_PATH", "/mnt/agentic-system")):
+    def __init__(self, working_directory: str = os.environ.get("AGENTIC_SYSTEM_PATH", "${AGENTIC_SYSTEM_PATH:-/opt/agentic}")):
         self.working_directory = Path(working_directory)
         self.tracked_files: Dict[str, str] = {}  # path -> hash
         self.changes: List[FileChange] = []

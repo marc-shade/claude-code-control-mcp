@@ -85,7 +85,7 @@ async def list_tools() -> List[Tool]:
                     },
                     "working_directory": {
                         "type": "string",
-                        "description": "Base directory for operations (default: /mnt/agentic-system)"
+                        "description": "Base directory for operations (default: ${AGENTIC_SYSTEM_PATH:-/opt/agentic})"
                     },
                     "context_files": {
                         "type": "array",
@@ -116,7 +116,7 @@ async def list_tools() -> List[Tool]:
                     },
                     "working_directory": {
                         "type": "string",
-                        "description": "Base directory (default: /mnt/agentic-system)"
+                        "description": "Base directory (default: ${AGENTIC_SYSTEM_PATH:-/opt/agentic})"
                     },
                     "max_files": {
                         "type": "integer",
@@ -141,7 +141,7 @@ async def list_tools() -> List[Tool]:
                     },
                     "working_directory": {
                         "type": "string",
-                        "description": "Base directory to search (default: /mnt/agentic-system)"
+                        "description": "Base directory to search (default: ${AGENTIC_SYSTEM_PATH:-/opt/agentic})"
                     },
                     "file_pattern": {
                         "type": "string",
@@ -184,7 +184,7 @@ async def list_tools() -> List[Tool]:
                     },
                     "working_directory": {
                         "type": "string",
-                        "description": "Base directory (default: /mnt/agentic-system)"
+                        "description": "Base directory (default: ${AGENTIC_SYSTEM_PATH:-/opt/agentic})"
                     }
                 },
                 "required": ["changes"]
@@ -206,7 +206,7 @@ async def list_tools() -> List[Tool]:
                     },
                     "working_directory": {
                         "type": "string",
-                        "description": "Working directory for commands (default: /mnt/agentic-system)"
+                        "description": "Working directory for commands (default: ${AGENTIC_SYSTEM_PATH:-/opt/agentic})"
                     },
                     "timeout": {
                         "type": "integer",
@@ -250,7 +250,7 @@ async def call_tool(name: str, arguments: Any) -> List[TextContent]:
                     )]
 
                 task_description = arguments["task_description"]
-                working_directory = arguments.get("working_directory", os.environ.get("AGENTIC_SYSTEM_PATH", "/mnt/agentic-system"))
+                working_directory = arguments.get("working_directory", os.environ.get("AGENTIC_SYSTEM_PATH", "${AGENTIC_SYSTEM_PATH:-/opt/agentic}"))
                 context_files = arguments.get("context_files", [])
                 max_iterations = arguments.get("max_iterations", 20)
 
@@ -272,7 +272,7 @@ async def call_tool(name: str, arguments: Any) -> List[TextContent]:
 
         elif name == "read_codebase":
             patterns = arguments["patterns"]
-            working_directory = arguments.get("working_directory", os.environ.get("AGENTIC_SYSTEM_PATH", "/mnt/agentic-system"))
+            working_directory = arguments.get("working_directory", os.environ.get("AGENTIC_SYSTEM_PATH", "${AGENTIC_SYSTEM_PATH:-/opt/agentic}"))
             max_files = arguments.get("max_files", 50)
 
             working_dir = Path(working_directory)
@@ -310,7 +310,7 @@ async def call_tool(name: str, arguments: Any) -> List[TextContent]:
             import subprocess
 
             query = arguments["query"]
-            working_directory = arguments.get("working_directory", os.environ.get("AGENTIC_SYSTEM_PATH", "/mnt/agentic-system"))
+            working_directory = arguments.get("working_directory", os.environ.get("AGENTIC_SYSTEM_PATH", "${AGENTIC_SYSTEM_PATH:-/opt/agentic}"))
             file_pattern = arguments.get("file_pattern", "*")
             case_sensitive = arguments.get("case_sensitive", True)
             max_results = arguments.get("max_results", 100)
@@ -349,7 +349,7 @@ async def call_tool(name: str, arguments: Any) -> List[TextContent]:
 
         elif name == "modify_files":
             changes = arguments["changes"]
-            working_directory = arguments.get("working_directory", os.environ.get("AGENTIC_SYSTEM_PATH", "/mnt/agentic-system"))
+            working_directory = arguments.get("working_directory", os.environ.get("AGENTIC_SYSTEM_PATH", "${AGENTIC_SYSTEM_PATH:-/opt/agentic}"))
             working_dir = Path(working_directory)
 
             file_tracker = FileTracker(working_directory)
@@ -404,7 +404,7 @@ async def call_tool(name: str, arguments: Any) -> List[TextContent]:
             import subprocess
 
             commands = arguments["commands"]
-            working_directory = arguments.get("working_directory", os.environ.get("AGENTIC_SYSTEM_PATH", "/mnt/agentic-system"))
+            working_directory = arguments.get("working_directory", os.environ.get("AGENTIC_SYSTEM_PATH", "${AGENTIC_SYSTEM_PATH:-/opt/agentic}"))
             timeout = arguments.get("timeout", 30)
 
             results = []
